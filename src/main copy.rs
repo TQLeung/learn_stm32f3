@@ -14,10 +14,18 @@ fn x(){
 
     let (mut itm, gpioe) = aux7::init();
     let mut i = &mut itm.stim[0]; 
-
+    const GPIOE_BSRR: u32 = 0x48001018;
+    const GPIOE_ODR: u32 = 0x48001014;
+    const GPIOE_RCC: u32 = 0x40021014;
+    unsafe {
+        // *(GPIOE_BSRR as *mut u32) = 1 << 8;
+        *(GPIOE_RCC as *mut u32) = 0x00c0_0000;
+        *(GPIOE_ODR as *mut u16) = 0xffff;
+        *(GPIOE_ODR as *mut u16) = 0xffff;
+    }
     // Turn on the North LED+
     gpioe.bsrr.write(|w| w.bs9().set_bit());
-    iprintln!(&mut i, "North111");
+    iprintln!(&mut i, "North");
     // Turn on the East LED
     gpioe.bsrr.write(|w| w.bs11().set_bit());
     iprintln!(&mut i, "East");

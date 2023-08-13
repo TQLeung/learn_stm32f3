@@ -1,16 +1,32 @@
 [package]
 name = "mstm32"
 version = "0.1.0"
-edition = "2021"
+edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# aux7 = { path = "auxiliary" }
+# cortex-m-rt = "0.7.3"
+# cortex-m-rt-macros = "0.7.0"
+# panic-itm = "0.4.2"
+# panic-halt = "0.2.0"
+# stm32f3-discovery = "0.7.0"
+
+
+# cortex-m = "0.7.2"
+cortex-m-rt = "0.6.14"
+stm32f3-discovery = "0.7.0"
+panic-itm = "0.4.2"
+
 aux7 = { path = "auxiliary" }
-
-
 
 [profile.release]
 codegen-units = 1
 debug = true
 lto = true
+# panic = "abort"
+
+
+[profile.dev]
+# panic = "abort"
