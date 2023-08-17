@@ -12,16 +12,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "aligned"
+version = "0.3.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a785a543aea40f5e4e2e93bb2655d31bc21bb391fff65697150973e383f16bb"
+dependencies = [
+ "as-slice",
+]
+
+[[package]]
 name = "android-tzdata"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e999941b234f3131b00bc13c22d06e8c5ff726d1b6318ac7eb276997bbb4fef0"
 
 [[package]]
+name = "as-slice"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45403b49e3954a4b8428a0ac21a4b7afadccf92bfd96273f1a58cd4812496ae0"
+dependencies = [
+ "generic-array 0.12.4",
+ "generic-array 0.13.3",
+ "generic-array 0.14.7",
+ "stable_deref_trait",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
+
+[[package]]
+name = "aux7"
+version = "0.2.0"
+dependencies = [
+ "cortex-m 0.6.7",
+ "cortex-m-rt",
+ "panic-itm",
+ "stm32f3 0.12.1",
+ "stm32f3-discovery 0.6.1",
+]
 
 [[package]]
 name = "bare-metal"
@@ -97,6 +129,19 @@ dependencies = [
 
 [[package]]
 name = "cortex-m"
+version = "0.6.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9075300b07c6a56263b9b582c214d0ff037b00d45ec9fde1cc711490c56f1bb9"
+dependencies = [
+ "aligned",
+ "bare-metal",
+ "bitfield",
+ "cortex-m 0.7.7",
+ "volatile-register",
+]
+
+[[package]]
+name = "cortex-m"
 version = "0.7.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ec610d8f49840a5b376c69663b6369e71f4b34484b9b2eb29fb918d92516cb9"
@@ -167,6 +212,24 @@ dependencies = [
 
 [[package]]
 name = "generic-array"
+version = "0.12.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ffdf9f34f1447443d37393cc6c2b8313aebddcd96906caf34e54c68d8e57d7bd"
+dependencies = [
+ "typenum",
+]
+
+[[package]]
+name = "generic-array"
+version = "0.13.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f797e67af32588215eaaab8327027ee8e71b9dd0b2b26996aedf20c030fce309"
+dependencies = [
+ "typenum",
+]
+
+[[package]]
+name = "generic-array"
 version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a"
@@ -205,9 +268,11 @@ dependencies = [
 name = "mstm32"
 version = "0.1.0"
 dependencies = [
+ "aux7",
+ "cortex-m 0.7.7",
  "cortex-m-rt",
  "panic-itm",
- "stm32f3-discovery",
+ "stm32f3-discovery 0.7.2",
 ]
 
 [[package]]
@@ -294,7 +359,7 @@ version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d577d97d1b31268087b6dddf2470e6794ef5eee87d9dca7fcd0481695391a4c"
 dependencies = [
- "cortex-m",
+ "cortex-m 0.7.7",
 ]
 
 [[package]]
@@ -454,15 +519,52 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 
 [[package]]
+name = "stm32-usbd"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "70d13eca735cae37df697f599777b000cc0ee924df8452f2b4bfaa6798ab0338"
+dependencies = [
+ "cortex-m 0.6.7",
+ "usb-device",
+ "vcell",
+]
+
+[[package]]
+name = "stm32f3"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "636387c2c5af11075c8ed3ef203c01460204be3a479397c2380622cbd61a673f"
+dependencies = [
+ "bare-metal",
+ "cortex-m 0.6.7",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
 name = "stm32f3"
 version = "0.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "081e808e6b2114ced6a83437081ed9816c92017eda7722a7c22f80984fb5476a"
 dependencies = [
  "bare-metal",
- "cortex-m",
+ "cortex-m 0.7.7",
  "cortex-m-rt",
  "vcell",
+]
+
+[[package]]
+name = "stm32f3-discovery"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c060c4c3b4808754186a27384aec717615a14159421b0a934a3a1c7c9d266f2"
+dependencies = [
+ "accelerometer",
+ "cortex-m 0.7.7",
+ "cortex-m-rt",
+ "lsm303dlhc",
+ "stm32f3xx-hal 0.6.1",
+ "switch-hal",
 ]
 
 [[package]]
@@ -472,11 +574,31 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f3a7ae8a1f35c20c197c1c1b6c4d87bcdfbaf974704ba67b7787aa8fdb771ca"
 dependencies = [
  "accelerometer",
- "cortex-m",
+ "cortex-m 0.7.7",
  "cortex-m-rt",
  "lsm303dlhc",
- "stm32f3xx-hal",
+ "stm32f3xx-hal 0.7.0",
  "switch-hal",
+]
+
+[[package]]
+name = "stm32f3xx-hal"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a96e54d3ba219c0d7d68e79fc72afd784972727e32c32bcae0178f2c132b1375"
+dependencies = [
+ "bare-metal",
+ "cfg-if",
+ "cortex-m 0.6.7",
+ "cortex-m-rt",
+ "embedded-dma",
+ "embedded-hal",
+ "nb 0.1.3",
+ "paste",
+ "rtcc",
+ "stm32-usbd",
+ "stm32f3 0.12.1",
+ "void",
 ]
 
 [[package]]
@@ -487,7 +609,7 @@ checksum = "9bfecf3fda3eaf93e7f77713f3e0bd817085ca9923089fdc96cd147637d82985"
 dependencies = [
  "cargo_metadata",
  "cfg-if",
- "cortex-m",
+ "cortex-m 0.7.7",
  "cortex-m-rt",
  "embedded-dma",
  "embedded-hal",
@@ -496,7 +618,7 @@ dependencies = [
  "paste",
  "rtcc",
  "slice-group-by",
- "stm32f3",
+ "stm32f3 0.13.2",
  "void",
 ]
 
@@ -568,6 +690,12 @@ name = "unicode-ident"
 version = "1.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "301abaae475aa91687eb82514b328ab47a211a533026cb25fc3e519b86adfc3c"
+
+[[package]]
+name = "usb-device"
+version = "0.2.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f6cc3adc849b5292b4075fc0d5fdcf2f24866e88e336dd27a8943090a520508"
 
 [[package]]
 name = "vcell"

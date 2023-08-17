@@ -19,7 +19,7 @@ fn init(){
     const GPIOE_RCC: u32 = 0x40021014;
     const GPIOE_MODER: u32 = 0x48001000;
     unsafe{
-        *(GPIOE_RCC as *mut u32) = 0x00c0_0000;
+        *(GPIOE_RCC as *mut u32) = 0x0020_0000;
         *(GPIOE_MODER as *mut u32) = 0x5555_0000;
     }
 }
